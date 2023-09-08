@@ -19,9 +19,11 @@ public class INTERACTOR : MonoBehaviour
     void Update()
     {
        RaycastHit hit;
+        Ray rayo = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
+            Debug.DrawRay(rayo.origin, rayo.direction * 200, Color.red);
 
 
-        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 200, capaInteract))
+        if (Physics.Raycast(rayo, out hit, 200, capaInteract))
         
         {
             if (hit.collider.GetComponent<INTERACTABLE>() != false)
