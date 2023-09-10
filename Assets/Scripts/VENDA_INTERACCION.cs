@@ -47,7 +47,8 @@ public class VENDA_INTERACCION : MonoBehaviour
         {
            
            venda.SetActive(true);
-                       
+           // venda.tag = "Venda";
+
         }
 
 

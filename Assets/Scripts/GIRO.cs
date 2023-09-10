@@ -5,6 +5,8 @@ using UnityEngine;
 public class GyroCameraController : MonoBehaviour
 {
     private Gyroscope gyro;
+    public float minVerticalAngle = -30f;
+    public float maxVerticalAngle = 30f;
 
     void Start()
     {
@@ -28,7 +30,14 @@ public class GyroCameraController : MonoBehaviour
         // Actualizamos la rotación del objeto en tiempo real con los datos del giroscopio
         if (gyro != null)
         {
-            transform.rotation = Quaternion.Euler(90, 90, 0) * (new Quaternion(-gyro.attitude.x, -gyro.attitude.y, gyro.attitude.z, gyro.attitude.w));
+            Quaternion currentRotation = Quaternion.Euler(90, 90, 0) * (new Quaternion(-gyro.attitude.x, -gyro.attitude.y, gyro.attitude.z, gyro.attitude.w));
+            // Limita la rotación vertical
+            float verticalAngle = Mathf.Clamp(currentRotation.eulerAngles.x, minVerticalAngle, maxVerticalAngle);
+
+            // Aplica la rotación limitada al objeto
+
+            transform.rotation = Quaternion.Euler(verticalAngle, currentRotation.eulerAngles.y, currentRotation.eulerAngles.z);
+            //transform.rotation = Quaternion.Euler(90, 90, 0) * (new Quaternion(-gyro.attitude.x, -gyro.attitude.y, gyro.attitude.z, gyro.attitude.w));
         }
     }
 }

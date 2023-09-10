@@ -17,6 +17,7 @@ public class PAJARO : MonoBehaviour
     public AudioClip sonidoDarVenda;  
     public AudioSource audioSource;
 
+
     private void OnMouseDown()
     {
       Destroy( GameObject.FindGameObjectWithTag("Venda"));

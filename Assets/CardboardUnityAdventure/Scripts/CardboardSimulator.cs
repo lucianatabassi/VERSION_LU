@@ -14,6 +14,8 @@ public class CardboardSimulator : MonoBehaviour
     public Transform personaje;
     private Camera cam;
     private Gyroscope gyro;
+  
+
 
     void Start()
     {
@@ -52,9 +54,11 @@ public class CardboardSimulator : MonoBehaviour
 
         if (gyro != null)
         {
+
             transform.rotation = Quaternion.Euler(90, 90, 0) * (new Quaternion(-gyro.attitude.x, -gyro.attitude.y, gyro.attitude.z, gyro.attitude.w));
         }
     }
+    
 
     public void UpdatePlayerPositonSimulator()
     {
