@@ -10,17 +10,21 @@ public class CARPINCHO_CONTROLADOR : MonoBehaviour
 
     private bool activo;
 
-    
+    Vector3 offset;
+
+
     void Update()
     {
         if (activo == true)
         {
             if(Input.GetKey("mouse 0")) //agarra con boton izq del mouse
             {
+                
                 carpincho.transform.SetParent(mano); //que la flor sea hija de la mano
                 carpincho.transform.position = mano.position;
                 carpincho.GetComponent<Rigidbody>().isKinematic = true;
             }
+            
         }
 
 

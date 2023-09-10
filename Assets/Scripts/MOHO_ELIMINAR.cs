@@ -8,6 +8,8 @@ public class MOHO_ELIMINAR : MonoBehaviour
    private int cantMoho = 3;
     public GameObject corazon1;
    public GameObject corazon2;
+    public AudioClip completado;
+    public AudioSource audioSource;
 
     void Start()
     {
@@ -36,9 +38,11 @@ public class MOHO_ELIMINAR : MonoBehaviour
 
         if (cantMoho <= 0)
         {
+            audioSource.PlayOneShot(completado);
             Destroy(gameObject);
             corazon1.SetActive(true);
             corazon2.SetActive(true);
+            
         }
 
 

@@ -11,12 +11,17 @@ public class PAJARO : MonoBehaviour
     public float floatFrequency = 1.0f; // Frecuencia de la oscilación vertical
     private int currentWaypointIndex = 0; // Índice del punto actual
     public GameObject circulo;
+    public GameObject corazon;
 
     private bool pajaroCurado = false;
 
     public AudioClip sonidoDarVenda;  
     public AudioSource audioSource;
 
+    void Start()
+    {
+        corazon.SetActive(false);
+    }
 
     private void OnMouseDown()
     {
@@ -24,7 +29,8 @@ public class PAJARO : MonoBehaviour
        pajaroCurado = true;
         sonidoCurar();
         Destroy(circulo);
-      Debug.Log("Pajaro curado");      
+        corazon.SetActive(true);
+        Debug.Log("Pajaro curado");      
     }
 
     private void Update()
