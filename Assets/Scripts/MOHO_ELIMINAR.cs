@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class MOHO_ELIMINAR : MonoBehaviour
 {
-    //public float velocidadEliminacion = 1.0f; // Velocidad a la que se elimina el moho.
-   // private bool eliminando = false;
+  
+   private int cantMoho = 3;
+    public GameObject corazon1;
+   public GameObject corazon2;
+
+    void Start()
+    {
+        corazon1.SetActive(false);
+        corazon2.SetActive(false);
+    }
 
     private void OnMouseDown()
     {
@@ -13,6 +21,7 @@ public class MOHO_ELIMINAR : MonoBehaviour
 
         // Intenta encontrar el componente Collider2D del objeto que colisiona con la rama.
         Collider[] colliders = Physics.OverlapSphere(transform.position, 1.0f);
+        
 
         foreach (Collider collider in colliders)
         {
@@ -21,9 +30,21 @@ public class MOHO_ELIMINAR : MonoBehaviour
             {
                 // Si es moho, destrúyelo.
                 Destroy(collider.gameObject);
+                cantMoho--;
             }
         }
+
+        if (cantMoho <= 0)
+        {
+            Destroy(gameObject);
+            corazon1.SetActive(true);
+            corazon2.SetActive(true);
+        }
+
+
     }
+
+
 
     /* private void Update()
       {
