@@ -11,6 +11,7 @@ public class VENDA_INTERACCION : MonoBehaviour
     private GameObject miVenda;
 
     private bool agarroHoja = false;
+    public bool joystick = false;
     //private bool agarroRama = false;
     //private bool vendaactiva = false;
 
@@ -27,9 +28,10 @@ public class VENDA_INTERACCION : MonoBehaviour
     }
     void Update()
     {
-       
+
 
         if (!agarroHoja && Input.GetKeyDown("mouse 0") && enRango(hoja))
+        //if (!agarroHoja && Input.GetKeyDown("joystick button 0") && enRango(hoja))
         {
             Destroy(hoja);
             agarroHoja = true;
@@ -47,6 +49,7 @@ public class VENDA_INTERACCION : MonoBehaviour
         {
            
            venda.SetActive(true);
+            joystick = true;
            // venda.tag = "Venda";
 
         }

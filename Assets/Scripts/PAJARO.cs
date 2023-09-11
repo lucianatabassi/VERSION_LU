@@ -18,9 +18,14 @@ public class PAJARO : MonoBehaviour
     public AudioClip sonidoDarVenda;  
     public AudioSource audioSource;
 
+    private VENDA_INTERACCION scriptVenda;
+
+    public bool pajaroCompletado = false;
+
     void Start()
     {
         corazon.SetActive(false);
+        scriptVenda = FindObjectOfType<VENDA_INTERACCION>();
     }
 
     private void OnMouseDown()
@@ -30,11 +35,36 @@ public class PAJARO : MonoBehaviour
         sonidoCurar();
         Destroy(circulo);
         corazon.SetActive(true);
-        Debug.Log("Pajaro curado");      
+        Debug.Log("Pajaro curado");
+        pajaroCompletado = true;
+    }
+
+    private void OnJoystickButtonDown()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 1.0f);
+
+
+        foreach (Collider collider in colliders)
+        {
+            // Comprueba si el objeto que colisiona con la rama tiene una etiqueta "Moho".
+            if (collider.CompareTag("Venda"))
+            {
+                // Si es moho, destrúyelo.
+                Destroy(collider.gameObject);
+                pajaroCurado = true;
+                pajaroCompletado = true;
+
+            }
+        }
     }
 
     private void Update()
     {
+       if (scriptVenda.joystick && Input.GetKeyDown("joystick button 0")  )
+        {
+            OnJoystickButtonDown();
+        } 
+
         if (pajaroCurado)
         {
             if (currentWaypointIndex < waypoints.Length)
@@ -81,6 +111,8 @@ public class PAJARO : MonoBehaviour
             Debug.Log("AA");
         }
     }
+
+  
 
 
 }

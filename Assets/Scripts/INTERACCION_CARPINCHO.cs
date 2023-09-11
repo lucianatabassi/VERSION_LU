@@ -15,6 +15,7 @@ public class InteraccionCarpincho : MonoBehaviour
 
 
     private bool objetosReemplazados = false;
+    public bool carpinchoCompletado = false;
 
     private void Update()
     {
@@ -38,6 +39,7 @@ public class InteraccionCarpincho : MonoBehaviour
 
 
                 objetosReemplazados = true;
+                carpinchoCompletado = true;
             }
         }
     }

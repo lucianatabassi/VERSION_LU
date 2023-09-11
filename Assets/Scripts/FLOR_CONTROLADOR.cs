@@ -17,7 +17,8 @@ public class FLOR_CONTROLADOR : MonoBehaviour
     {
         if (activo == true)
         {
-            if(Input.GetKey("mouse 0")) //agarra con boton izq del mouse
+            //if(Input.GetKey("joystick button 0")) 
+            if (Input.GetKey("mouse 0")) //agarra con boton izq del mouse
             {
                 flor.transform.SetParent(mano); //que la flor sea hija de la mano
                 flor.transform.position = mano.position;

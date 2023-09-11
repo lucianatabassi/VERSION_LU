@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class MOHO_ELIMINAR : MonoBehaviour
 {
-  
-   private int cantMoho = 3;
+
+    private int cantMoho = 3;
     public GameObject corazon1;
-   public GameObject corazon2;
+    public GameObject corazon2;
+    public GameObject rama;
     public AudioClip completado;
     public AudioSource audioSource;
+    public bool pezCompletado = false;
 
     void Start()
     {
@@ -17,13 +19,24 @@ public class MOHO_ELIMINAR : MonoBehaviour
         corazon2.SetActive(false);
     }
 
+    void Update()
+    {
+        // Verificar si se ha presionado el botón del joystick.
+        if (Input.GetKeyDown("joystick button 0"))
+
+        {
+            OnMouseDown();
+        }
+    }
+
+
     private void OnMouseDown()
     {
         // Este método se llama cuando haces clic en el objeto con este script.
 
         // Intenta encontrar el componente Collider2D del objeto que colisiona con la rama.
         Collider[] colliders = Physics.OverlapSphere(transform.position, 1.0f);
-        
+
 
         foreach (Collider collider in colliders)
         {
@@ -39,14 +52,17 @@ public class MOHO_ELIMINAR : MonoBehaviour
         if (cantMoho <= 0)
         {
             audioSource.PlayOneShot(completado);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            rama.SetActive(false);
             corazon1.SetActive(true);
             corazon2.SetActive(true);
-            
+            pezCompletado = true;
+
         }
 
 
     }
+}
 
 
 
@@ -74,6 +90,6 @@ public class MOHO_ELIMINAR : MonoBehaviour
               eliminando = true;
           }
       }*/
-}
+
 
 
